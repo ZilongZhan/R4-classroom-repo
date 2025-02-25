@@ -6,10 +6,57 @@ export const getStudentsTotal = (students: Student[]): number => {
   return students.length;
 };
 
-// Crea una función para añadir un estudiante a la lista de estudiantes
-// La función debe recibir un array de estudiantes y los datos del estudiante a añadir
-// Si el estudiante ya existe en la lista, muestra un error con showErrorModal
-// export const addStudent =
+export const addStudent = (
+  students: Student[],
+  studentName: string,
+  studentLastName: string,
+  studentAge: number,
+  studentEmail: string,
+  studentPhoneNumber: string
+): void => {
+  const newStudent: Student = {
+    id: generateId(students),
+    name: studentName,
+    lastName: studentLastName,
+    age: studentAge,
+    email: studentEmail,
+    phoneNumber: studentPhoneNumber,
+  };
+
+  const maxNameLength = 60;
+  const maxEmailLength = 320;
+  const maxAge = 120;
+  const emailPattern = /^[^@]+@[^@]+\.[^@]+$/;
+  const spanishNumberPattern = /^(\+?34)?(6\d{2}|7[1-9]\d{1})\d{6}$/;
+
+  const areValidValues =
+    studentName.length <= maxNameLength &&
+    studentLastName.length <= maxNameLength &&
+    studentAge <= maxAge &&
+    studentEmail.length <= maxEmailLength &&
+    emailPattern.test(studentEmail) &&
+    spanishNumberPattern.test(studentPhoneNumber);
+
+  if (!areValidValues) {
+    showErrorModal("Error en algún valor introducido. Inténtelo de nuevo");
+    return;
+  }
+
+  const studentAlreadyExists = students.some(
+    (student) =>
+      student.name === newStudent.name &&
+      student.lastName === newStudent.lastName &&
+      (student.phoneNumber === newStudent.phoneNumber ||
+        student.email === newStudent.email)
+  );
+
+  if (studentAlreadyExists) {
+    showErrorModal("El estudiante que has introducido ya existe.");
+    return;
+  }
+
+  students.push(newStudent);
+};
 
 // Crea una función para eliminar un estudiante de la lista de estudiantes
 // La función debe recibir un array de estudiantes y el id del estudiante a eliminar
