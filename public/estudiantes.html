@@ -16,24 +16,27 @@
       <h2>Estudiantes</h2>
       <form class="form new-student">
         <div class="form__group">
-          <label class="form__label" for="first-name">Nombre: </label>
-          <input class="form__control" id="first-name" name="first-name" type="text" autocapitalize="on" required>
+          <label class="form__label" for="name">Nombre: </label>
+          <input class="form__control" id="name" name="first-name" type="text" maxlength="60" autocapitalize="on"
+            required>
         </div>
         <div class="form__group">
-          <label class="form__label" for="last-name">Apellido: </label>
-          <input class="form__control" id="last-name" name="last-name" type="text" autocapitalize="on" required>
+          <label class="form__label" for="lastname">Apellido: </label>
+          <input class="form__control" id="lastname" name="last-name" type="text" maxlength="60" autocapitalize="on"
+            required>
         </div>
         <div class="form__group">
           <label class="form__label" for="age">Edad: </label>
-          <input class="form__control" id="age" name="age" type="number" min="0" required>
+          <input class="form__control" id="age" name="age" type="number" min="0" max="120" required>
         </div>
         <div class="form__group">
           <label class="form__label" for="email">Correo: </label>
-          <input class="form__control" id="email" name="email" type="email" required>
+          <input class="form__control" id="email" name="email" type="email" placeholder="ejemplo@email.com" required>
         </div>
         <div class="form__group">
-          <label class="form__label" for="phone-number">Telefono: </label>
-          <input class="form__control" id="phone-number" name="phone-number" type="text" required>
+          <label class="form__label" for="phone">Telefono: </label>
+          <input class="form__control" id="phone" name="phone-number" type="tel"
+            pattern="^(\+?34)?(6\d{2}|7[1-9]\d{1})\d{6}$" placeholder="696969696">
         </div>
         <div class="form__group form__buttons">
           <button class="form__button" type="submit">Crear estudiante</button>
