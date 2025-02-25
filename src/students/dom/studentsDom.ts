@@ -1,8 +1,8 @@
 import { students } from "../../index.js";
 import { studentsStorage } from "../../storage/Storage.js";
 import {
-  //   addStudent,
-  //   deleteStudent,
+  addStudent,
+  deleteStudent,
   getStudentsTotal,
 } from "../service/studentsService.js";
 import { Student } from "../../types.js";
@@ -41,7 +41,7 @@ const createStudentRow = (student: Student): void => {
   `;
 
   row.querySelector("button")?.addEventListener("click", () => {
-    // deleteStudent(students, student.id);
+    deleteStudent(students, student.id);
     studentsStorage.save(students);
 
     renderStudentsTable();
@@ -63,14 +63,14 @@ studentsForm.addEventListener("submit", (event) => {
     "#phone"
   ) as HTMLInputElement;
 
-  /* addStudent(
+  addStudent(
     students,
     studentName.value,
     studentLastName.value,
     +studentAge.value,
     studentEmail.value,
     studentPhoneNumber.value
-  ); */
+  );
   studentsStorage.save(students);
 
   renderStudentsTable();
