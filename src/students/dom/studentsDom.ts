@@ -1,10 +1,10 @@
 import { students } from "../../index.js";
 import { studentsStorage } from "../../storage/Storage.js";
-// import {
-//   addStudent,
-//   deleteStudent,
-//   getStudentsTotal,
-// } from "../service/studentsService.js";
+import {
+  //   addStudent,
+  //   deleteStudent,
+  getStudentsTotal,
+} from "../service/studentsService.js";
 import { Student } from "../../types.js";
 
 const studentsTable = document.querySelector(".table.students tbody");
@@ -24,7 +24,7 @@ export const renderStudentsTable = (): void => {
     createStudentRow(student);
   });
 
-  // studentsCounter.textContent = `${getStudentsTotal(students)}`;
+  studentsCounter.textContent = `${getStudentsTotal(students)}`;
 };
 
 const createStudentRow = (student: Student): void => {
