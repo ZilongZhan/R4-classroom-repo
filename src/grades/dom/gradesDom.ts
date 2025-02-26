@@ -1,6 +1,6 @@
 import { courses, grades, students } from "../../index.js";
 import { getStudentsOptions } from "../../students/service/studentsService.js";
-// import { getCoursesOptions } from "../../courses/service/coursesService.js";
+import { getCoursesOptions } from "../../courses/service/coursesService.js";
 import { Grade } from "../../types.js";
 import {
   //   addGrade,
@@ -27,14 +27,14 @@ getStudentsOptions(students).forEach(({ id, name, lastName }) => {
   studentsSelect.appendChild(option);
 });
 
-/* getCoursesOptions(courses).forEach(({ id, name }) => {
+getCoursesOptions(courses).forEach(({ id, name }) => {
   const option = document.createElement("option");
   option.value = `${id}`;
   option.textContent = name;
 
   const coursesSelect = gradesForm.querySelector("#course");
   coursesSelect?.appendChild(option);
-}); */
+});
 
 export const renderGradesTable = (): void => {
   gradesTable.innerHTML = "";
