@@ -63,8 +63,8 @@ export const deleteStudent = (students: Student[], studentId: number): void => {
     (student) => student.id === studentId
   );
 
-  if (!indexOfStudentToDelete) {
-    throw new Error("Error: no se ha encontrado el estudiante.");
+  if (indexOfStudentToDelete === -1) {
+    showErrorModal("Error: no se ha encontrado el estudiante.");
   }
 
   students.splice(indexOfStudentToDelete, 1);
