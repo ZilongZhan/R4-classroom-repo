@@ -40,9 +40,18 @@ export const addCourse = (courses: Course[], courseName: string): void => {
   courses.push(newCourse);
 };
 
-// Crea una función para eliminar un curso de la lista de cursos
-// La función debe recibir un array de cursos y el id del curso a eliminar
-// export const deleteCourse =
+export const deleteCourse = (courses: Course[], courseId: number): void => {
+  const indexOfCourseToDelete = courses.findIndex(
+    (course) => course.id === courseId
+  );
+
+  if (indexOfCourseToDelete === -1) {
+    showErrorModal("Error: no se ha encontrado el curso.");
+    return;
+  }
+
+  courses.splice(indexOfCourseToDelete, 1);
+};
 
 // Crea una función para obtener las opciones de cursos para rellenar un select
 // La función debe recibir un array de cursos

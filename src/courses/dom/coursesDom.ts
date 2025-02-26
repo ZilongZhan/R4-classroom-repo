@@ -3,7 +3,7 @@ import { coursesStorage } from "../../storage/Storage.js";
 import { Course } from "../../types.js";
 import {
   addCourse,
-  // deleteCourse,
+  deleteCourse,
   getCoursesTotal,
 } from "../service/coursesService.js";
 
@@ -37,7 +37,7 @@ const createCourseRow = (course: Course): void => {
   `;
 
   row.querySelector("button")?.addEventListener("click", () => {
-    // deleteCourse(courses, course.id);
+    deleteCourse(courses, course.id);
     coursesStorage.save(courses);
 
     renderCoursesTable();
