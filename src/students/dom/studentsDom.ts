@@ -36,7 +36,7 @@ const createStudentRow = (student: Student): void => {
       <td>${student.age}</td>
       <td>${student.email}</td>
       <td>${student.phoneNumber}</td>
-      <td><button type="submit">borrar</button></td>
+      <td><button type="button">borrar</button></td>
     </tr>
   `;
 
