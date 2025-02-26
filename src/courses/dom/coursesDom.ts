@@ -2,7 +2,7 @@ import { courses } from "../../index.js";
 import { coursesStorage } from "../../storage/Storage.js";
 import { Course } from "../../types.js";
 import {
-  // addCourse,
+  addCourse,
   // deleteCourse,
   getCoursesTotal,
 } from "../service/coursesService.js";
@@ -51,7 +51,7 @@ coursesForm.addEventListener("submit", (event) => {
 
   const courseName = coursesForm.querySelector("#name") as HTMLInputElement;
 
-  //addCourse(courses, courseName.value);
+  addCourse(courses, courseName.value);
   coursesStorage.save(courses);
 
   renderCoursesTable();
