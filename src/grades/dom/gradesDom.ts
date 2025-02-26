@@ -2,12 +2,12 @@ import { courses, grades, students } from "../../index.js";
 // import { getStudentsOptions } from "../../students/service/studentsService.js";
 // import { getCoursesOptions } from "../../courses/service/coursesService.js";
 import { Grade } from "../../types.js";
-// import {
-//   addGrade,
-//   deleteGrade,
-//   getGradeFullData,
-//   getGradesTotal,
-// } from "../service/gradesService.js";
+import {
+  //   addGrade,
+  //   deleteGrade,
+  //   getGradeFullData,
+  getGradesTotal,
+} from "../service/gradesService.js";
 import { gradesStorage } from "../../storage/Storage.js";
 
 const gradesTable = document.querySelector(".table.grades tbody");
@@ -43,7 +43,7 @@ export const renderGradesTable = (): void => {
     createGradeRow(grade);
   });
 
-  // gradesCounter.textContent = `${getGradesTotal(grades)}`;
+  gradesCounter.textContent = `${getGradesTotal(grades)}`;
 };
 
 const createGradeRow = (grade: Grade): void => {
