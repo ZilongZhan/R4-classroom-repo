@@ -49,5 +49,4 @@ export const addGrade = (
   }
 
   grades.push(newGrade);
-  console.log(grades);
 };
