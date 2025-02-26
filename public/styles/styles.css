@@ -42,13 +42,14 @@ h1 {
 }
 
 .main-header {
+  padding: 10px 0;
+
   > * {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #333;
     color: white;
-    padding: 10px 0;
   }
 }
 
