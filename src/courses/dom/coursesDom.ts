@@ -1,11 +1,11 @@
 import { courses } from "../../index.js";
 import { coursesStorage } from "../../storage/Storage.js";
 import { Course } from "../../types.js";
-// import {
-// addCourse,
-// deleteCourse,
-// getCoursesTotal,
-// } from "../service/coursesService.js";
+import {
+  // addCourse,
+  // deleteCourse,
+  getCoursesTotal,
+} from "../service/coursesService.js";
 
 const coursesTable = document.querySelector(".table.courses tbody");
 const coursesForm = document.querySelector(
@@ -24,7 +24,7 @@ export const renderCoursesTable = (): void => {
     createCourseRow(course);
   });
 
-  // coursesCounter.textContent = `${getCoursesTotal(courses)}`;
+  coursesCounter.textContent = `${getCoursesTotal(courses)}`;
 };
 
 const createCourseRow = (course: Course): void => {
