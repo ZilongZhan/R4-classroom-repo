@@ -1,4 +1,4 @@
-// import { getStudentNameById } from "../../students/service/studentsService.js";
+import { getStudentNameById } from "../../students/service/studentsService.js";
 import { Course, CourseStats, Student } from "../../types";
 // import { getCourseStats } from "../service/statsService.js";
 
