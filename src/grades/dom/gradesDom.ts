@@ -4,7 +4,7 @@ import { getCoursesOptions } from "../../courses/service/coursesService.js";
 import { Grade } from "../../types.js";
 import {
   addGrade,
-  //   deleteGrade,
+  deleteGrade,
   getGradeFullData,
   getGradesTotal,
 } from "../service/gradesService.js";
@@ -61,7 +61,7 @@ const createGradeRow = (grade: Grade): void => {
   `;
 
   row.querySelector("button")?.addEventListener("click", () => {
-    // deleteGrade(grades, grade.id);
+    deleteGrade(grades, grade.id);
     gradesStorage.save(grades);
 
     renderGradesTable();
