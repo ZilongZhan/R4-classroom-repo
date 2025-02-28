@@ -1,6 +1,6 @@
 import { getStudentNameById } from "../../students/service/studentsService.js";
 import { Course, CourseStats, Student } from "../../types";
-// import { getCourseStats } from "../service/statsService.js";
+import { getCourseStats } from "../service/statsService.js";
 
 const coursesList = document.querySelector(".statistics");
 
@@ -12,8 +12,8 @@ export const renderStatsCards = (courses: Course[], students: Student[]) => {
   coursesList.innerHTML = "";
 
   courses.forEach((course) => {
-    /* const stats = getCourseStats(course.id);
-    createStatCard(course, students, stats); */
+    const stats = getCourseStats(course.id);
+    createStatCard(course, students, stats);
   });
 };
 
@@ -25,12 +25,12 @@ const createStatCard = (
   const card = document.createElement("article");
   card.classList.add("statistics__card");
 
-  /* card.innerHTML = `
+  card.innerHTML = `
     <h3 class="statistics__title">${course.name}</h3>
     <p>Estudiantes: ${stats.studentsCount}</p>`;
 
   if (stats.studentsCount > 0) {
-    card.innerHTML += `            
+    card.innerHTML += `
       <p>Aprobados: ${stats.passedCount} (${stats.passedCountPercentage.toFixed(
       2
     )}%)</p>
@@ -43,7 +43,7 @@ const createStatCard = (
       stats.highestGradeStudentId
     )})</p>
     `;
-  } */
+  }
 
   coursesList.appendChild(card);
 };
