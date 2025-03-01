@@ -21,6 +21,16 @@ export const getGradeFullData = (
   const student = students.find((student) => student.id === grade.studentId)!;
   const course = courses.find((course) => course.id === grade.courseId)!;
 
+  if (!student || !course) {
+    return {
+      ...grade,
+      value: 0,
+      studentName: "(deleted)",
+      studentLastName: "(deleted)",
+      courseName: "(deleted)",
+    };
+  }
+
   const studentName = student.name;
   const studentLastName = student.lastName;
   const courseName = course.name;
@@ -29,7 +39,13 @@ export const getGradeFullData = (
 };
 
 export const deleteGrade = (grades: Grade[], gradeId: number): void => {
-  const indexOfGradeToDelete = gradeId - 1;
+  const indexOfGradeToDelete = grades.findIndex(
+    (grade) => grade.id === gradeId
+  );
+
+  if (indexOfGradeToDelete) {
+    showErrorModal("Error: la nota no existe.");
+  }
 
   grades.splice(indexOfGradeToDelete, 1);
 };
@@ -48,9 +64,11 @@ export const addGrade = (
   };
 
   const isValidGrade = grade >= 0 && grade <= 10;
+  const isValidStudentId = students.find((student) => student.id === studentId);
+  const isValidCourseId = courses.find((course) => course.id === courseId);
 
-  if (!isValidGrade) {
-    showErrorModal("Error: la nota que has introducido no es válida.");
+  if (!isValidGrade || !isValidStudentId || !isValidCourseId) {
+    showErrorModal("Error: datos introducidos no válidos.");
     return;
   }
 
@@ -60,7 +78,7 @@ export const addGrade = (
 
   if (gradeAlreadyExists) {
     showErrorModal(
-      "La nota que has introducido ya existe para este estudiante"
+      "La nota que has introducido ya existe para este estudiante."
     );
     return;
   }

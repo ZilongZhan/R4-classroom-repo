@@ -1,16 +1,15 @@
-import { grades, students } from "../../index.js";
+import { grades } from "../../index.js";
 import { CourseStats } from "../../types";
 
 export const getCourseStats = (courseId: number): CourseStats => {
-  const studentsCount = students.filter((student) =>
-    grades.some(
-      (grade) => grade.courseId === courseId && grade.studentId === student.id
-    )
-  ).length;
+  const gradesFromThisCourse = grades
+    .filter((grade) => grade.courseId === courseId)
+    .sort((gradeA, gradeB) => gradeA.value - gradeB.value);
+  const gradesTotal = gradesFromThisCourse.length;
 
-  if (!studentsCount) {
+  if (!gradesTotal) {
     return {
-      courseId: 0,
+      courseId,
       studentsCount: 0,
       passedCount: 0,
       passedCountPercentage: 0,
@@ -22,13 +21,14 @@ export const getCourseStats = (courseId: number): CourseStats => {
     };
   }
 
-  const gradesFromThisCourse = grades
-    .filter((grade) => grade.courseId === courseId)
-    .sort((gradeA, gradeB) => gradeA.value - gradeB.value);
-  const gradesTotal = gradesFromThisCourse.length;
+  const minPassingGrade = 5;
 
-  const passedExams = gradesFromThisCourse.filter((grade) => grade.value >= 5);
-  const failedExams = gradesFromThisCourse.filter((grade) => grade.value < 5);
+  const passedExams = gradesFromThisCourse.filter(
+    (grade) => grade.value >= minPassingGrade
+  );
+  const failedExams = gradesFromThisCourse.filter(
+    (grade) => grade.value < minPassingGrade
+  );
 
   const passedCount = passedExams.length;
   const passedCountPercentage = (passedCount / gradesTotal) * 100;
@@ -46,7 +46,7 @@ export const getCourseStats = (courseId: number): CourseStats => {
 
   return {
     courseId,
-    studentsCount,
+    studentsCount: gradesTotal,
     passedCount,
     passedCountPercentage,
     failedCount,

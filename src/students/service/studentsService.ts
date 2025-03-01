@@ -23,22 +23,33 @@ export const addStudent = (
     phoneNumber: studentPhoneNumber,
   };
 
+  const minNameLength = 1;
   const maxNameLength = 60;
-  const maxEmailLength = 320;
+  const minAge = 0;
   const maxAge = 120;
+  const minEmailLength = 3;
+  const maxEmailLength = 320;
   const emailPattern = /^[^@]+@[^@]+\.[^@]+$/;
   const spanishNumberPattern = /^(\+?34)?(6\d{2}|7[1-9]\d{1})\d{6}$/;
 
-  const areValidValues =
-    studentName.length <= maxNameLength &&
-    studentLastName.length <= maxNameLength &&
-    studentAge <= maxAge &&
+  const validName =
+    studentName.length >= minNameLength && studentName.length <= maxNameLength;
+  const validLastName =
+    studentLastName.length >= minNameLength &&
+    studentLastName.length <= maxNameLength;
+  const validAge = studentAge >= minAge && studentAge <= maxAge;
+  const validEmail =
+    studentEmail.length >= minEmailLength &&
     studentEmail.length <= maxEmailLength &&
-    emailPattern.test(studentEmail) &&
-    spanishNumberPattern.test(studentPhoneNumber);
+    emailPattern.test(studentEmail);
+  const validPhoneNumber =
+    studentPhoneNumber && spanishNumberPattern.test(studentPhoneNumber);
+
+  const areValidValues =
+    validName && validLastName && validAge && validEmail && validPhoneNumber;
 
   if (!areValidValues) {
-    showErrorModal("Error en algún valor introducido. Inténtelo de nuevo");
+    showErrorModal("Error en algún valor introducido. Inténtelo de nuevo.");
     return;
   }
 
@@ -64,7 +75,7 @@ export const deleteStudent = (students: Student[], studentId: number): void => {
   );
 
   if (indexOfStudentToDelete === -1) {
-    showErrorModal("Error: no se ha encontrado el estudiante.");
+    showErrorModal("Error: el estudiante no existe.");
   }
 
   students.splice(indexOfStudentToDelete, 1);
