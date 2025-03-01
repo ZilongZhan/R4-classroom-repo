@@ -97,5 +97,9 @@ export const getStudentNameById = (
 ): string => {
   const student = students.find((student) => student.id === studentId)!;
 
+  if (!student) {
+    return "No disponible";
+  }
+
   return `${student.name} ${student.lastName}`;
 };

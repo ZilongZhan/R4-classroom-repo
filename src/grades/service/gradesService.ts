@@ -25,9 +25,9 @@ export const getGradeFullData = (
     return {
       ...grade,
       value: 0,
-      studentName: "(deleted)",
-      studentLastName: "(deleted)",
-      courseName: "(deleted)",
+      studentName: "(no disponible)",
+      studentLastName: "(no disponible)",
+      courseName: "(no disponible)",
     };
   }
 
