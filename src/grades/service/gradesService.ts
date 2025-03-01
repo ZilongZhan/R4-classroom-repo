@@ -43,7 +43,7 @@ export const deleteGrade = (grades: Grade[], gradeId: number): void => {
     (grade) => grade.id === gradeId
   );
 
-  if (indexOfGradeToDelete) {
+  if (indexOfGradeToDelete === -1) {
     showErrorModal("Error: la nota no existe.");
   }
 
